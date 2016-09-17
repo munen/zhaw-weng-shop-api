@@ -1,7 +1,5 @@
 * ZHAW WENG API
 
-[[https://gitlab.com/munen/zhaw-weng-api/badges/master/build.svg]]
-
 This is the API for the ZHAW SML Web Engineering project. It is
 deployed on Heroku and can be found [[http://zhaw-weng-api.herokuapp.com/swagger-ui/index.html][here]].
 
@@ -22,8 +20,18 @@ java -jar zhaw_weng_api.jar migrate
 
 *** Migrate Database
 
+**** Create the new database
 #+BEGIN_SRC sh
-export DATABASE_URL="jdbc:postgresql://localhost/issue_tracker_dev?user=munen"
+sudo su - postgres
+psql
+CREATE DATABASE zhaw_weng_shop_dev OWNER munen;
+CREATE DATABASE zhaw_weng_shop_test OWNER munen;
+#+END_SRC
+
+**** Run migrations
+
+#+BEGIN_SRC sh
+export DATABASE_URL="jdbc:postgresql://localhost/zhaw_weng_shop_dev?user=munen"
 lein migratus migrate
 #+END_SRC
 
