@@ -4,4 +4,4 @@ CREATE TABLE products
  done boolean DEFAULT false,
  due_date timestamp NOT NULL,
  title text NOT NULL,
- project_id integer REFERENCES categories(id));
+ category_id integer REFERENCES categories(id));

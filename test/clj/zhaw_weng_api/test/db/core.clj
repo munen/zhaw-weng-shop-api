@@ -18,18 +18,18 @@
   (jdbc/with-db-transaction [t-conn *db*]
     (jdbc/db-set-rollback-only! t-conn)
     (testing "generated functions from HugSQL are working"
-      (let [project {:title    "Test Category 1"}
-            project_id (:id (db/create-project! t-conn project))
+      (let [category {:title    "Test Category 1"}
+            category_id (:id (db/create-category! t-conn category))
             product {:client_id  "some-uuid"
                    :due_date   (java.util.Date.)
                    :done       false
                    :priority   "1"
                    :title      "Test Product 1"
-                   :project_id project_id}
+                   :category_id category_id}
             id (:id (db/create-product! t-conn product))]
 
         (is (= (assoc product :id id )
-               (db/get-product t-conn {:id id :project_id project_id})))
+               (db/get-product t-conn {:id id :category_id category_id})))
 
         (is (= 1
                (db/update-product!
@@ -39,11 +39,11 @@
                        :title "Test Product Updated"))))
 
         (is (= (assoc product :id id :title "Test Product Updated")
-               (db/get-product t-conn {:id id :project_id project_id})))
+               (db/get-product t-conn {:id id :category_id category_id})))
 
         (is (= 1 (db/delete-product!
                   t-conn
-                  {:id id :project_id project_id})))
+                  {:id id :category_id category_id})))
 
         (is (= nil
-               (db/get-product t-conn {:id id :project_id project_id})))))))
+               (db/get-product t-conn {:id id :category_id category_id})))))))

@@ -5,9 +5,9 @@
             [schema.core :as s]))
 
 (s/defschema Product {(s/optional-key :id) Long
-                    (s/optional-key :project_id) Long
+                    (s/optional-key :category_id) Long
                     :client_id String
-                    :project_client_id String
+                    :category_client_id String
                     :done Boolean
                     :title String
                     :priority (s/enum "1" "2" "3")
@@ -18,17 +18,17 @@
                       :title String
                       :active Boolean})
 
-(defn add-product! [new-product project_id]
+(defn add-product! [new-product category_id]
   "Add an product to the Database and return it as a map with the new ID"
-  (let [id (:id (db/create-product! (assoc new-product :project_id project_id)))
+  (let [id (:id (db/create-product! (assoc new-product :category_id category_id)))
         product (assoc new-product :id id)]
     product))
 
-(defn add-project! [new-project]
-  "Add an project to the Database and return it as a map with the new ID"
-  (let [id (:id (db/create-project! new-project))
-        project (assoc new-project :id id)]
-    project))
+(defn add-category! [new-category]
+  "Add an category to the Database and return it as a map with the new ID"
+  (let [id (:id (db/create-category! new-category))
+        category (assoc new-category :id id)]
+    category))
 
 (defapi service-routes
   {:swagger {:ui "/swagger-ui"
@@ -43,37 +43,37 @@
 
                     (POST "/" []
                           :return Category
-                          :body [project Category]
-                          :summary "Create and save a project"
-                          (ok (add-project! project)))
+                          :body [category Category]
+                          :summary "Create and save a category"
+                          (ok (add-category! category)))
 
                     (GET "/:id" []
                             :path-params [id :- Long]
-                            :summary "Retrieve a project"
-                            (ok (db/get-project {:id id})))
+                            :summary "Retrieve a category"
+                            (ok (db/get-category {:id id})))
 
                     (PUT "/:id" []
                             :path-params [id :- Long]
                             :return Category
-                            :body [project Category]
-                            :summary "Updates a project"
-                            (db/update-project! (assoc project :id id))
-                            (ok (db/get-project {:id id})))
+                            :body [category Category]
+                            :summary "Updates a category"
+                            (db/update-category! (assoc category :id id))
+                            (ok (db/get-category {:id id})))
 
                     (DELETE "/:id" []
                             :path-params [id :- Long]
-                            :summary "Deletes a project"
-                            (ok (db/delete-project! {:id id}))))
+                            :summary "Deletes a category"
+                            (ok (db/delete-category! {:id id}))))
 
-           (context "/project/:project_id" []
+           (context "/category/:category_id" []
                     :tags ["Products API"]
-                    :path-params [project_id :- Long]
+                    :path-params [category_id :- Long]
 
                     (DELETE "/products/:id" []
                             :path-params [id :- Long]
                             :summary "Deletes an product"
                             (ok (db/delete-product! {:id id
-                                                   :project_id project_id})))
+                                                   :category_id category_id})))
 
                     (PUT "/products/:id" []
                          :path-params [id :- Long]
@@ -81,20 +81,20 @@
                          :body [product Product]
                          :summary "Updates an product"
                          (db/update-product! (assoc product :id id
-                                                  :project_id project_id))
+                                                  :category_id category_id))
                          (ok (db/get-product {:id id
-                                            :project_id project_id})))
+                                            :category_id category_id})))
 
                     (POST "/products" []
                           :return Product
                           :body [product Product]
                           :summary "Create and save an product"
-                          (ok (add-product! product project_id)))
+                          (ok (add-product! product category_id)))
 
                     (GET "/products" []
                          :return [Product]
                          :summary "Retrieve all products"
-                         (ok (db/get-products {:project_id project_id}))))
+                         (ok (db/get-products {:category_id category_id}))))
 
            (context "/tests" []
                     :tags ["Practice HTTP based services"]
