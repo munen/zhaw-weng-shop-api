@@ -1,7 +1,7 @@
 * ZHAW WENG API
 
 This is the API for the ZHAW SML Web Engineering project. It is
-deployed on Heroku and can be found [[http://zhaw-weng-shop-api.herokuapp.com/swagger-ui/index.html][here]].
+deployed on Heroku and can be found [[https://zhaw-weng-shop-api.herokuapp.com][here]].
 
 ** Prerequisites
 
@@ -13,7 +13,7 @@ You will need [[https://github.com/technomancy/leiningen][Leiningen 2.0]] or abo
 heroku addons:create heroku-postgresql:hobby-dev
 heroku run bash
 cd target
-java -jar zhaw_weng_api.jar migrate
+java -jar zhaw_weng_shop_api.jar migrate
 #+END_SRC
 
 ** Running

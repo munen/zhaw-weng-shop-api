@@ -7,5 +7,5 @@
   {:init
    (fn []
      (parser/cache-off!)
-     (log/info "\n-=[zhaw_weng_api started successfully using the development profile]=-"))
+     (log/info "\n-=[zhaw_weng_shop_api started successfully using the development profile]=-"))
    :middleware wrap-dev})

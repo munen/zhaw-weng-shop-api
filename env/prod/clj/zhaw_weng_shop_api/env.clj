@@ -4,5 +4,5 @@
 (def defaults
   {:init
    (fn []
-     (log/info "\n-=[zhaw_weng_api started successfully]=-"))
+     (log/info "\n-=[zhaw_weng_shop_api started successfully]=-"))
    :middleware identity})

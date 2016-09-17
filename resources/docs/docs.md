@@ -14,7 +14,7 @@ If you haven't already, then please follow the steps below to configure your dat
 
 ### Managing Your Middleware
 
-Request middleware functions are located under the `zhaw_weng_api.middleware` namespace.
+Request middleware functions are located under the `zhaw_weng_shop_api.middleware` namespace.
 
 This namespace is reserved for any custom middleware for the application. Some default middleware is
 already defined here. The middleware is assembled in the `wrap-base` function.
