@@ -18,7 +18,7 @@
   (jdbc/with-db-transaction [t-conn *db*]
     (jdbc/db-set-rollback-only! t-conn)
     (testing "generated functions from HugSQL are working"
-      (let [project {:title    "Test Project 1"}
+      (let [project {:title    "Test Category 1"}
             project_id (:id (db/create-project! t-conn project))
             product {:client_id  "some-uuid"
                    :due_date   (java.util.Date.)

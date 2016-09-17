@@ -13,7 +13,7 @@
                     :priority (s/enum "1" "2" "3")
                     :due_date java.util.Date})
 
-(s/defschema Project {(s/optional-key :id) Long
+(s/defschema Category {(s/optional-key :id) Long
                       :client_id String
                       :title String
                       :active Boolean})
@@ -39,11 +39,11 @@
   (context "/api" []
 
            (context "/projects" []
-                    :tags ["Project API"]
+                    :tags ["Category API"]
 
                     (POST "/" []
-                          :return Project
-                          :body [project Project]
+                          :return Category
+                          :body [project Category]
                           :summary "Create and save a project"
                           (ok (add-project! project)))
 
@@ -54,8 +54,8 @@
 
                     (PUT "/:id" []
                             :path-params [id :- Long]
-                            :return Project
-                            :body [project Project]
+                            :return Category
+                            :body [project Category]
                             :summary "Updates a project"
                             (db/update-project! (assoc project :id id))
                             (ok (db/get-project {:id id})))
