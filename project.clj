@@ -1,4 +1,4 @@
-(defproject zhaw_weng_api "0.1.0-SNAPSHOT"
+(defproject zhaw_weng_shop_api "0.1.0-SNAPSHOT"
 
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
@@ -39,7 +39,7 @@
   :source-paths ["src/clj"]
   :resource-paths ["resources"]
 
-  :main zhaw-weng-api.core
+  :main zhaw-weng-shop-api.core
   :migratus {:store :database
              :migration-dir "migrations"
              :db (or (System/getenv "JBDC_DATABASE_URL")
@@ -49,9 +49,9 @@
             [lein-auto "0.1.2"]]
   :profiles
   {:uberjar {:omit-source true
-             
+
              :aot :all
-             :uberjar-name "zhaw_weng_api.jar"
+             :uberjar-name "zhaw_weng_shop_api.jar"
              :source-paths ["env/prod/clj"]
              :resource-paths ["env/prod/resources"]}
    :dev           [:project/dev :profiles/dev]
@@ -61,8 +61,8 @@
                                  [ring/ring-devel "1.4.0"]
                                  [pjstadig/humane-test-output "0.7.1"]
                                  [mvxcvi/puget "1.0.0"]]
-                  
-                  
+
+
                   :source-paths ["env/dev/clj" "test/clj"]
                   :resource-paths ["env/dev/resources"]
                   :repl-options {:init-ns user}

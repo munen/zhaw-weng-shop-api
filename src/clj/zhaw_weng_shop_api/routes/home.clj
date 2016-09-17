@@ -1,5 +1,5 @@
-(ns zhaw-weng-api.routes.home
-  (:require [zhaw-weng-api.layout :as layout]
+(ns zhaw-weng-shop-api.routes.home
+  (:require [zhaw-weng-shop-api.layout :as layout]
             [compojure.core :refer [defroutes GET]]
             [ring.util.response :as response]
             [clojure.java.io :as io]))

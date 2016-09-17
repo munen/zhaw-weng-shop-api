@@ -1,7 +1,7 @@
-(ns zhaw-weng-api.env
+(ns zhaw-weng-shop-api.env
   (:require [selmer.parser :as parser]
             [clojure.tools.logging :as log]
-            [zhaw-weng-api.dev-middleware :refer [wrap-dev]]))
+            [zhaw-weng-shop-api.dev-middleware :refer [wrap-dev]]))
 
 (def defaults
   {:init
