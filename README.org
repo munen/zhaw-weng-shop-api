@@ -35,8 +35,6 @@ export DATABASE_URL="jdbc:postgresql://localhost/zhaw_weng_shop_dev?user=munen"
 lein migratus migrate
 #+END_SRC
 
-
-
 To start a web server for the application, run:
 
 #+BEGIN_SRC sh
