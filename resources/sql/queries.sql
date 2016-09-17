@@ -33,8 +33,8 @@ WHERE id = :id AND category_id = :category_id
 -- :name create-category! :<! :n
 -- :doc creates a new category
 INSERT INTO categories
-(client_id, title, active)
-VALUES (:client_id, :title, :active)
+(client_id, title)
+VALUES (:client_id, :title)
 returning id
 
 -- :name delete-category! :! :n
@@ -45,7 +45,7 @@ WHERE id = :id
 -- :name update-category! :! :n
 -- :doc update an existing category
 UPDATE categories
-SET title = :title, active = :active
+SET title = :title
 WHERE id = :id
 
 -- :name get-category :? :1

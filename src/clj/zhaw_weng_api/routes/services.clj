@@ -15,8 +15,7 @@
 
 (s/defschema Category {(s/optional-key :id) Long
                       :client_id String
-                      :title String
-                      :active Boolean})
+                      :title String})
 
 (defn add-product! [new-product category_id]
   "Add an product to the Database and return it as a map with the new ID"
