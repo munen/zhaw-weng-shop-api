@@ -14,36 +14,36 @@
     (migrations/migrate ["migrate"] (env :database-url))
     (f)))
 
-(deftest test-issues
+(deftest test-products
   (jdbc/with-db-transaction [t-conn *db*]
     (jdbc/db-set-rollback-only! t-conn)
     (testing "generated functions from HugSQL are working"
       (let [project {:title    "Test Project 1"}
             project_id (:id (db/create-project! t-conn project))
-            issue {:client_id  "some-uuid"
+            product {:client_id  "some-uuid"
                    :due_date   (java.util.Date.)
                    :done       false
                    :priority   "1"
-                   :title      "Test Issue 1"
+                   :title      "Test Product 1"
                    :project_id project_id}
-            id (:id (db/create-issue! t-conn issue))]
+            id (:id (db/create-product! t-conn product))]
 
-        (is (= (assoc issue :id id )
-               (db/get-issue t-conn {:id id :project_id project_id})))
+        (is (= (assoc product :id id )
+               (db/get-product t-conn {:id id :project_id project_id})))
 
         (is (= 1
-               (db/update-issue!
+               (db/update-product!
                 t-conn
-                (assoc issue
+                (assoc product
                        :id id
-                       :title "Test Issue Updated"))))
+                       :title "Test Product Updated"))))
 
-        (is (= (assoc issue :id id :title "Test Issue Updated")
-               (db/get-issue t-conn {:id id :project_id project_id})))
+        (is (= (assoc product :id id :title "Test Product Updated")
+               (db/get-product t-conn {:id id :project_id project_id})))
 
-        (is (= 1 (db/delete-issue!
+        (is (= 1 (db/delete-product!
                   t-conn
                   {:id id :project_id project_id})))
 
         (is (= nil
-               (db/get-issue t-conn {:id id :project_id project_id})))))))
+               (db/get-product t-conn {:id id :project_id project_id})))))))

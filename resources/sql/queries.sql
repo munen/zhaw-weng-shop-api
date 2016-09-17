@@ -1,30 +1,30 @@
--- :name create-issue! :<! :n
--- :doc creates a new issue
-INSERT INTO issues
+-- :name create-product! :<! :n
+-- :doc creates a new product
+INSERT INTO products
 (client_id, done, title, due_date, project_id, project_client_id, priority)
 VALUES (:client_id, :done, :title, :due_date, :project_id, :project_client_id, :priority)
 returning id
 
--- :name update-issue! :! :n
--- :doc update an existing issue
-UPDATE issues
+-- :name update-product! :! :n
+-- :doc update an existing product
+UPDATE products
 SET title = :title, done = :done, due_date = :due_date, priority = :priority
 WHERE project_id = :project_id AND id = :id
 
--- :name get-issue :? :1
--- :doc retrieve a issue given the id.
-SELECT * FROM issues
+-- :name get-product :? :1
+-- :doc retrieve a product given the id.
+SELECT * FROM products
 WHERE project_id = :project_id AND id = :id
 
--- :name get-issues :? :*
--- :doc retrieves all issues
-SELECT * FROM issues
+-- :name get-products :? :*
+-- :doc retrieves all products
+SELECT * FROM products
 WHERE project_id = :project_id
 order by id
 
--- :name delete-issue! :! :n
--- :doc delete a issue given the id
-DELETE FROM issues
+-- :name delete-product! :! :n
+-- :doc delete a product given the id
+DELETE FROM products
 WHERE id = :id AND project_id = :project_id
 
 

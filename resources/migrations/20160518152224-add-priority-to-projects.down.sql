@@ -1,1 +1,1 @@
-ALTER TABLE issues DROP COLUMN priority RESTRICT;
+ALTER TABLE products DROP COLUMN priority RESTRICT;

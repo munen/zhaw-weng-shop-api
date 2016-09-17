@@ -1,4 +1,4 @@
-CREATE TABLE issues
+CREATE TABLE products
 (id SERIAL,
  client_id text NOT NULL,
  done boolean DEFAULT false,

@@ -4,7 +4,7 @@
             [zhaw-weng-api.db.core :as db]
             [schema.core :as s]))
 
-(s/defschema Issue {(s/optional-key :id) Long
+(s/defschema Product {(s/optional-key :id) Long
                     (s/optional-key :project_id) Long
                     :client_id String
                     :project_client_id String
@@ -18,11 +18,11 @@
                       :title String
                       :active Boolean})
 
-(defn add-issue! [new-issue project_id]
-  "Add an issue to the Database and return it as a map with the new ID"
-  (let [id (:id (db/create-issue! (assoc new-issue :project_id project_id)))
-        issue (assoc new-issue :id id)]
-    issue))
+(defn add-product! [new-product project_id]
+  "Add an product to the Database and return it as a map with the new ID"
+  (let [id (:id (db/create-product! (assoc new-product :project_id project_id)))
+        product (assoc new-product :id id)]
+    product))
 
 (defn add-project! [new-project]
   "Add an project to the Database and return it as a map with the new ID"
@@ -66,35 +66,35 @@
                             (ok (db/delete-project! {:id id}))))
 
            (context "/project/:project_id" []
-                    :tags ["Issues API"]
+                    :tags ["Products API"]
                     :path-params [project_id :- Long]
 
-                    (DELETE "/issues/:id" []
+                    (DELETE "/products/:id" []
                             :path-params [id :- Long]
-                            :summary "Deletes an issue"
-                            (ok (db/delete-issue! {:id id
+                            :summary "Deletes an product"
+                            (ok (db/delete-product! {:id id
                                                    :project_id project_id})))
 
-                    (PUT "/issues/:id" []
+                    (PUT "/products/:id" []
                          :path-params [id :- Long]
-                         :return Issue
-                         :body [issue Issue]
-                         :summary "Updates an issue"
-                         (db/update-issue! (assoc issue :id id
+                         :return Product
+                         :body [product Product]
+                         :summary "Updates an product"
+                         (db/update-product! (assoc product :id id
                                                   :project_id project_id))
-                         (ok (db/get-issue {:id id
+                         (ok (db/get-product {:id id
                                             :project_id project_id})))
 
-                    (POST "/issues" []
-                          :return Issue
-                          :body [issue Issue]
-                          :summary "Create and save an issue"
-                          (ok (add-issue! issue project_id)))
+                    (POST "/products" []
+                          :return Product
+                          :body [product Product]
+                          :summary "Create and save an product"
+                          (ok (add-product! product project_id)))
 
-                    (GET "/issues" []
-                         :return [Issue]
-                         :summary "Retrieve all issues"
-                         (ok (db/get-issues {:project_id project_id}))))
+                    (GET "/products" []
+                         :return [Product]
+                         :summary "Retrieve all products"
+                         (ok (db/get-products {:project_id project_id}))))
 
            (context "/tests" []
                     :tags ["Practice HTTP based services"]
@@ -118,7 +118,7 @@
                          (ok body))
 
                     (POST "/echo" []
-                          :return   (s/maybe Issue)
-                          :body     [issue (s/maybe Issue)]
-                          :summary  "echoes a Issue from json-body"
-                          (ok issue)))))
+                          :return   (s/maybe Product)
+                          :body     [product (s/maybe Product)]
+                          :summary  "echoes a Product from json-body"
+                          (ok product)))))
