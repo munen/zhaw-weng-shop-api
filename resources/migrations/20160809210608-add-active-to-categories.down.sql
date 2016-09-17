@@ -1,1 +1,1 @@
-ALTER TABLE projects DROP COLUMN active RESTRICT;
+ALTER TABLE categories DROP COLUMN active RESTRICT;

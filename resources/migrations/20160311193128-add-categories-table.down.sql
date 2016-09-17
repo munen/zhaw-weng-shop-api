@@ -1,1 +1,1 @@
-DROP TABLE projects;
+DROP TABLE categories;

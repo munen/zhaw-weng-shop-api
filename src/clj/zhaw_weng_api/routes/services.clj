@@ -38,7 +38,7 @@
                            :description "Sample Services"}}}}
   (context "/api" []
 
-           (context "/projects" []
+           (context "/categories" []
                     :tags ["Category API"]
 
                     (POST "/" []

@@ -10,7 +10,7 @@
       (is (= 302 (:status response)))))
 
   ;; (testing "create project"
-  ;;   (let [response (app (-> (request :post "/api/projects" {:title "spec project"})
+  ;;   (let [response (app (-> (request :post "/api/categories" {:title "spec project"})
   ;;                           (content-type "application-json")))]
   ;;     ;; (println response)
   ;;     ;; (println (slurp (:body response)))

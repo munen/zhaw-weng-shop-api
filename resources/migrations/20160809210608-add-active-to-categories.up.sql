@@ -1,2 +1,2 @@
-ALTER TABLE projects ADD active boolean DEFAULT false;
-UPDATE projects SET active = false;
+ALTER TABLE categories ADD active boolean DEFAULT false;
+UPDATE categories SET active = false;

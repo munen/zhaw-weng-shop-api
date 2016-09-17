@@ -1,1 +1,1 @@
-ALTER TABLE projects DROP COLUMN client_id RESTRICT;
+ALTER TABLE categories DROP COLUMN client_id RESTRICT;

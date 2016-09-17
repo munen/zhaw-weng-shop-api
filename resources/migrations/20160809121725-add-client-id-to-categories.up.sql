@@ -1,2 +1,2 @@
-ALTER TABLE projects ADD client_id text NOT NULL;
-UPDATE projects SET client_id = 'none';
+ALTER TABLE categories ADD client_id text NOT NULL;
+UPDATE categories SET client_id = 'none';

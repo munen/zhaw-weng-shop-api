@@ -32,23 +32,23 @@ WHERE id = :id AND project_id = :project_id
 
 -- :name create-project! :<! :n
 -- :doc creates a new project
-INSERT INTO projects
+INSERT INTO categories
 (client_id, title, active)
 VALUES (:client_id, :title, :active)
 returning id
 
 -- :name delete-project! :! :n
 -- :doc delete a project given the id
-DELETE FROM projects
+DELETE FROM categories
 WHERE id = :id
 
 -- :name update-project! :! :n
 -- :doc update an existing project
-UPDATE projects
+UPDATE categories
 SET title = :title, active = :active
 WHERE id = :id
 
 -- :name get-project :? :1
 -- :doc retrieve a project given the id.
-SELECT * FROM projects
+SELECT * FROM categories
 WHERE id = :id
