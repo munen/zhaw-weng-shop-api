@@ -45,7 +45,7 @@
 
            (context "/categories" []
                     :tags ["Category API"]
-                    :description "Note: In `data` you can "
+                    :description "Note: In `data` you can save arbitrary JSON data."
 
                     (POST "/" []
                           :return Category
@@ -73,6 +73,7 @@
 
            (context "/category/:category_id" []
                     :tags ["Products API"]
+                    :description "Note: In `data` you can save arbitrary JSON data."
                     :path-params [category_id :- Long]
 
                     (DELETE "/products/:id" []
