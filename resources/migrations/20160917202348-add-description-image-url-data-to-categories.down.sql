@@ -1,0 +1,3 @@
+ALTER TABLE categories DROP COLUMN description RESTRICT;
+ALTER TABLE categories DROP COLUMN image_url RESTRICT;
+ALTER TABLE categories DROP COLUMN data RESTRICT;

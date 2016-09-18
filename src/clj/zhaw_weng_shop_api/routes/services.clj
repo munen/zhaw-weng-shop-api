@@ -5,7 +5,7 @@
             [schema.core :as s]))
 
 (s/defschema Product {(s/optional-key :id) Long
-                    (s/optional-key :category_id) Long
+                    :category_id Long
                     :client_id String
                     :category_client_id String
                     :done Boolean
@@ -14,8 +14,11 @@
                     :due_date java.util.Date})
 
 (s/defschema Category {(s/optional-key :id) Long
-                      :client_id String
-                      :title String})
+                       :description String
+                       :image_url String
+                       :data String
+                       :client_id String
+                       :title String})
 
 (defn add-product! [new-product category_id]
   "Add an product to the Database and return it as a map with the new ID"

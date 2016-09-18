@@ -8,7 +8,7 @@ returning id
 -- :name update-product! :! :n
 -- :doc update an existing product
 UPDATE products
-SET title = :title, done = :done, due_date = :due_date, priority = :priority
+SET client_id = :client_id, title = :title, done = :done, due_date = :due_date, priority = :priority
 WHERE category_id = :category_id AND id = :id
 
 -- :name get-product :? :1
@@ -33,8 +33,8 @@ WHERE id = :id AND category_id = :category_id
 -- :name create-category! :<! :n
 -- :doc creates a new category
 INSERT INTO categories
-(client_id, title)
-VALUES (:client_id, :title)
+(client_id, title, description, image_url, data)
+VALUES (:client_id, :title, :description, :image_url, :data)
 returning id
 
 -- :name delete-category! :! :n
@@ -45,7 +45,7 @@ WHERE id = :id
 -- :name update-category! :! :n
 -- :doc update an existing category
 UPDATE categories
-SET title = :title
+SET client_id = :client_id, title = :title, description = :description, image_url = :image_url, data = :data
 WHERE id = :id
 
 -- :name get-category :? :1
