@@ -45,7 +45,7 @@ WHERE id = :id
 -- :name update-category! :! :n
 -- :doc update an existing category
 UPDATE categories
-SET client_id = :client_id, title = :title, description = :description, image_url = :image_url, data = :data
+SET client_id = :client_id, title = :title, description = :description, image_url = :image_url, data = :data, updated_at = NOW()
 WHERE id = :id
 
 -- :name get-category :? :1

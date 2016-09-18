@@ -23,7 +23,9 @@
                        :image_url String
                        :data String
                        :client_id String
-                       :title String})
+                       :title String
+                       (s/optional-key :created_at) java.util.Date
+                       (s/optional-key :updated_at) java.util.Date})
 
 (defn add-product! [new-product category_id]
   "Add an product to the Database and return it as a map with the new ID"
