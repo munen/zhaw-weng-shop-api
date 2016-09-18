@@ -26,6 +26,12 @@
             category_id (:id (db/create-category! t-conn category))
             product {:client_id  "some-uuid"
                      :title      "Test Product 1"
+                     :description "Product Description"
+                     :in_stock true
+                     :image_url "http://example.com/image.png"
+                     :data "{}"
+                     :quantity 2
+                     :price 100
                      :category_id category_id
                      :category_client_id (:client_id category)}
             id (:id (db/create-product! t-conn product))]
@@ -34,13 +40,16 @@
                (db/get-product t-conn {:id id :category_id category_id})))
 
         (is (= 1
-               (db/update-product!
-                t-conn
-                (assoc product
-                       :id id
-                       :title "Test Product Updated"))))
-
-        (is (= (assoc product :id id :title "Test Product Updated")
+               (try
+                 (db/update-product!
+                  t-conn
+                  (assoc product
+                         :id id
+                         :title "Test Product Updated"
+                         :in_stock false))
+                 (catch clojure.lang.ExceptionInfo e
+                   (.printStackTrace (.getCause e))))))
+        (is (= (assoc product :id id :title "Test Product Updated" :in_stock false)
                (db/get-product t-conn {:id id :category_id category_id})))
 
         (is (= 1 (db/delete-product!

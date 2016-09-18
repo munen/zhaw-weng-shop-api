@@ -8,7 +8,13 @@
                       (s/optional-key :category_id) Long
                       :client_id String
                       :category_client_id String
-                      :title String})
+                      :title String
+                      :description String
+                      :image_url String
+                      :data String
+                      :quantity Integer
+                      :price Integer
+                      :in_stock Boolean})
 
 (s/defschema Category {(s/optional-key :id) Long
                        :description String
