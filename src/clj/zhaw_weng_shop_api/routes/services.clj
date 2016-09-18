@@ -14,7 +14,9 @@
                       :data String
                       :quantity Integer
                       :price Integer
-                      :in_stock Boolean})
+                      :in_stock Boolean
+                      (s/optional-key :created_at) java.util.Date
+                      (s/optional-key :updated_at) java.util.Date})
 
 (s/defschema Category {(s/optional-key :id) Long
                        :description String
@@ -25,7 +27,8 @@
 
 (defn add-product! [new-product category_id]
   "Add an product to the Database and return it as a map with the new ID"
-  (let [id (:id (db/create-product! (assoc new-product :category_id category_id)))
+  (let [id (:id (db/create-product! (assoc new-product
+                                           :category_id category_id)))
         product (assoc new-product :id id)]
     product))
 

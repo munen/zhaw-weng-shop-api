@@ -8,7 +8,7 @@ returning id
 -- :name update-product! :! :n
 -- :doc update an existing product
 UPDATE products
-SET client_id = :client_id, category_client_id = :category_client_id, title = :title, description = :description, image_url = :image_url, data = :data, quantity = :quantity, price = :price, in_stock = :in_stock
+SET client_id = :client_id, category_client_id = :category_client_id, title = :title, description = :description, image_url = :image_url, data = :data, quantity = :quantity, price = :price, in_stock = :in_stock, updated_at = NOW()
 WHERE category_id = :category_id AND id = :id
 
 -- :name get-product :? :1

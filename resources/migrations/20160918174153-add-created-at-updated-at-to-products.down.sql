@@ -1,0 +1,2 @@
+ALTER TABLE products DROP COLUMN created_at RESTRICT;
+ALTER TABLE products DROP COLUMN updated_at RESTRICT;

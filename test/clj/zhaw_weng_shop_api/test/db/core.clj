@@ -36,21 +36,22 @@
                      :category_client_id (:client_id category)}
             id (:id (db/create-product! t-conn product))]
 
-        (is (= (assoc product :id id )
-               (db/get-product t-conn {:id id :category_id category_id})))
+        (is (=
+             (assoc product :id id )
+             (dissoc (db/get-product t-conn {:id id :category_id category_id})
+                     :created_at :updated_at)))
 
         (is (= 1
-               (try
-                 (db/update-product!
-                  t-conn
-                  (assoc product
-                         :id id
-                         :title "Test Product Updated"
-                         :in_stock false))
-                 (catch clojure.lang.ExceptionInfo e
-                   (.printStackTrace (.getCause e))))))
+               (db/update-product!
+                t-conn
+                (assoc product
+                       :id id
+                       :title "Test Product Updated"
+                       :in_stock false
+                       ))))
         (is (= (assoc product :id id :title "Test Product Updated" :in_stock false)
-               (db/get-product t-conn {:id id :category_id category_id})))
+               (dissoc (db/get-product t-conn {:id id :category_id category_id})
+                       :created_at :updated_at)))
 
         (is (= 1 (db/delete-product!
                   t-conn
