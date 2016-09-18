@@ -1,14 +1,14 @@
 -- :name create-product! :<! :n
 -- :doc creates a new product
 INSERT INTO products
-(client_id, done, title, due_date, category_id, category_client_id, priority)
-VALUES (:client_id, :done, :title, :due_date, :category_id, :category_client_id, :priority)
+(client_id, title, category_id, category_client_id)
+VALUES (:client_id, :title, :category_id, :category_client_id)
 returning id
 
 -- :name update-product! :! :n
 -- :doc update an existing product
 UPDATE products
-SET client_id = :client_id, title = :title, done = :done, due_date = :due_date, priority = :priority
+SET client_id = :client_id, title = :title
 WHERE category_id = :category_id AND id = :id
 
 -- :name get-product :? :1

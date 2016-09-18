@@ -5,13 +5,10 @@
             [schema.core :as s]))
 
 (s/defschema Product {(s/optional-key :id) Long
-                    :category_id Long
-                    :client_id String
-                    :category_client_id String
-                    :done Boolean
-                    :title String
-                    :priority (s/enum "1" "2" "3")
-                    :due_date java.util.Date})
+                      (s/optional-key :category_id) Long
+                      :client_id String
+                      :category_client_id String
+                      :title String})
 
 (s/defschema Category {(s/optional-key :id) Long
                        :description String
@@ -42,6 +39,7 @@
 
            (context "/categories" []
                     :tags ["Category API"]
+                    :description "Note: In `data` you can "
 
                     (POST "/" []
                           :return Category

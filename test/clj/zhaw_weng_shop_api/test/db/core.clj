@@ -25,9 +25,6 @@
                       :data "{}"}
             category_id (:id (db/create-category! t-conn category))
             product {:client_id  "some-uuid"
-                     :due_date   (java.util.Date.)
-                     :done       false
-                     :priority   "1"
                      :title      "Test Product 1"
                      :category_id category_id
                      :category_client_id (:client_id category)}
