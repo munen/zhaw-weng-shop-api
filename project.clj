@@ -1,4 +1,4 @@
-(defproject zhaw_weng_shop_api "0.1.0-SNAPSHOT"
+(defproject zhaw_weng_shop_api "1.0.0"
 
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
