@@ -1,4 +1,4 @@
-(ns zhaw-weng-shop-api.test.db.core
+(ns zhaw-weng-shop-api.test.db.core-test
   (:require [zhaw-weng-shop-api.db.core :refer [*db*] :as db]
             [luminus-migrations.core :as migrations]
             [clojure.test :refer :all]
@@ -18,22 +18,19 @@
   (jdbc/with-db-transaction [t-conn *db*]
     (jdbc/db-set-rollback-only! t-conn)
     (testing "generated functions from HugSQL are working"
-      (let [category {:client_id "some_client_uuid_4_category"
-                      :title    "Test Category 1"
+      (let [category {:title    "Test Category 1"
                       :description "spec description"
                       :image_url "http://example.com/image.png"
                       :data "{}"}
             category_id (:id (db/create-category! t-conn category))
-            product {:client_id  "some-uuid"
-                     :title      "Test Product 1"
+            product {:title      "Test Product 1"
                      :description "Product Description"
                      :in_stock true
                      :image_url "http://example.com/image.png"
                      :data "{}"
                      :quantity 2
                      :price 100
-                     :category_id category_id
-                     :category_client_id (:client_id category)}
+                     :category_id category_id}
             id (:id (db/create-product! t-conn product))]
 
         (is (=

@@ -6,8 +6,6 @@
 
 (s/defschema Product {(s/optional-key :id) Long
                       (s/optional-key :category_id) Long
-                      :client_id String
-                      :category_client_id String
                       :title String
                       :description String
                       :image_url String
@@ -22,7 +20,6 @@
                        :description String
                        :image_url String
                        :data String
-                       :client_id String
                        :title String
                        (s/optional-key :created_at) java.util.Date
                        (s/optional-key :updated_at) java.util.Date})
