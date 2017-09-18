@@ -25,7 +25,7 @@
                        (s/optional-key :updated_at) java.util.Date})
 
 (defn add-product! [new-product category_id]
-  "Add an product to the Database and return it as a map with the new ID"
+  "Add a product to the Database and return it as a map with the new ID"
   (let [id (:id (db/create-product! (assoc new-product
                                            :category_id category_id)))
         product (assoc new-product :id id)]
@@ -95,7 +95,7 @@
 
                     (DELETE "/products/:id" []
                             :path-params [id :- Long]
-                            :summary "Deletes an product"
+                            :summary "Deletes a product"
                             (ok (db/delete-product! {:id id
                                                    :category_id category_id})))
 
@@ -103,7 +103,7 @@
                          :path-params [id :- Long]
                          :return Product
                          :body [product Product]
-                         :summary "Updates an product"
+                         :summary "Updates a product"
                          (db/update-product! (assoc product :id id
                                                   :category_id category_id))
                          (ok (db/get-product {:id id
@@ -112,7 +112,7 @@
                     (POST "/products" []
                           :return Product
                           :body [product Product]
-                          :summary "Create and save an product"
+                          :summary "Create and save a product"
                           (ok (add-product! product category_id)))
 
                     (GET "/products" []
